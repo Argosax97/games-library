@@ -1,7 +1,7 @@
-import { dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-import { FlatCompat } from "@eslint/eslintrc";
+import { FlatCompat } from '@eslint/eslintrc';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -27,7 +27,7 @@ const eslintConfig = [
     rules: {
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
-      'no-console': ['error', { allow: ['warn', 'error'] }],
+      'no-console': ['error', { allow: ['warn', 'error', 'info', 'debug'] }],
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -64,11 +64,11 @@ const eslintConfig = [
   }),
   {
     ignores: [
-      "node_modules/**",
-      ".next/**",
-      "out/**",
-      "build/**",
-      "next-env.d.ts",
+      'node_modules/**',
+      '.next/**',
+      'out/**',
+      'build/**',
+      'next-env.d.ts',
     ],
   },
 ];
