@@ -1,13 +1,10 @@
 'use client';
 
 import { httpBatchLink, loggerLink } from '@trpc/client';
-import { createTRPCReact } from '@trpc/react-query';
 
-import type { AppRouter } from '@/server/trpc/router';
+import { trpcReact } from '@/utils/trpc/trpcReact';
 
-export const trpc = createTRPCReact<AppRouter>();
-
-export const trpcClient = trpc.createClient({
+export const trpcClient = trpcReact.createClient({
   links: [
     loggerLink({
       enabled: (opts) =>

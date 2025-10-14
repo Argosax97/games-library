@@ -1,0 +1,28 @@
+import { z } from 'zod';
+
+export const getGamesSchema = z.object({
+  page: z.number().optional(),
+  pageSize: z.number().optional(),
+  search: z.string().optional(),
+  searchPrecise: z.boolean().optional(),
+  searchExact: z.boolean().optional(),
+  parentPlatforms: z.string().optional(),
+  platforms: z.string().optional(),
+  stores: z.string().optional(),
+  developers: z.string().optional(),
+  publishers: z.string().optional(),
+  genres: z.string().optional(),
+  tags: z.string().optional(),
+  creators: z.string().optional(),
+  dates: z.string().optional(),
+  updated: z.string().optional(),
+  platformsCount: z.number().optional(),
+  metacritic: z.string().optional(),
+  excludeCollection: z.number().optional(),
+  excludeAdditions: z.boolean().optional(),
+  excludeParents: z.boolean().optional(),
+  excludeGameSeries: z.boolean().optional(),
+  excludeStores: z.string().optional(),
+  ordering: z.string().optional(),
+  key: z.string().optional(),
+});

@@ -41,6 +41,7 @@ export class GamesService {
      * @param excludeGameSeries Exclude games which included in a game series.
      * @param excludeStores Exclude stores, for example: `5,6`.
      * @param ordering Available fields: `name`, `released`, `added`, `created`, `updated`, `rating`, `metacritic`. You can reverse the sort order adding a hyphen, for example: `-released`.
+     * @param key
      * @returns any
      * @throws ApiError
      */
@@ -68,6 +69,7 @@ export class GamesService {
         excludeGameSeries?: boolean,
         excludeStores?: string,
         ordering?: string,
+        key?: string,
     ): CancelablePromise<{
         count: number;
         next?: string | null;
@@ -101,6 +103,7 @@ export class GamesService {
                 'exclude_game_series': excludeGameSeries,
                 'exclude_stores': excludeStores,
                 'ordering': ordering,
+                'key': key ?? process.env.RAWG_API_KEY
             },
         });
     }
@@ -296,19 +299,16 @@ export class GamesService {
     /**
      * Get details of the game.
      * @param id A unique integer value identifying this Game.
-     * @param id An ID or a slug identifying this Game.
      * @returns GameSingle
      * @throws ApiError
      */
     public static gamesRead(
         id: number,
-        id: string,
     ): CancelablePromise<GameSingle> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/games/{id}',
             path: {
-                'id': id,
                 'id': id,
             },
         });
@@ -316,19 +316,16 @@ export class GamesService {
     /**
      * Get a list of game achievements.
      * @param id A unique integer value identifying this Game.
-     * @param id An ID or a slug identifying this Game.
      * @returns ParentAchievement
      * @throws ApiError
      */
     public static gamesAchievementsRead(
         id: number,
-        id: string,
     ): CancelablePromise<ParentAchievement> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/games/{id}/achievements',
             path: {
-                'id': id,
                 'id': id,
             },
         });
@@ -336,19 +333,16 @@ export class GamesService {
     /**
      * Get a list of game trailers.
      * @param id A unique integer value identifying this Game.
-     * @param id An ID or a slug identifying this Game.
      * @returns Movie
      * @throws ApiError
      */
     public static gamesMoviesRead(
         id: number,
-        id: string,
     ): CancelablePromise<Movie> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/games/{id}/movies',
             path: {
-                'id': id,
                 'id': id,
             },
         });
@@ -356,19 +350,16 @@ export class GamesService {
     /**
      * Get a list of most recent posts from the game's subreddit.
      * @param id A unique integer value identifying this Game.
-     * @param id An ID or a slug identifying this Game.
      * @returns Reddit
      * @throws ApiError
      */
     public static gamesRedditRead(
         id: number,
-        id: string,
     ): CancelablePromise<Reddit> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/games/{id}/reddit',
             path: {
-                'id': id,
                 'id': id,
             },
         });
@@ -376,19 +367,16 @@ export class GamesService {
     /**
      * Get a list of visually similar games, available only for business and enterprise API users.
      * @param id A unique integer value identifying this Game.
-     * @param id An ID or a slug identifying this Game.
      * @returns GameSingle
      * @throws ApiError
      */
     public static gamesSuggestedRead(
         id: number,
-        id: string,
     ): CancelablePromise<GameSingle> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/games/{id}/suggested',
             path: {
-                'id': id,
                 'id': id,
             },
         });
@@ -396,19 +384,16 @@ export class GamesService {
     /**
      * Get streams on Twitch associated with the game, available only for business and enterprise API users.
      * @param id A unique integer value identifying this Game.
-     * @param id An ID or a slug identifying this Game.
      * @returns Twitch
      * @throws ApiError
      */
     public static gamesTwitchRead(
         id: number,
-        id: string,
     ): CancelablePromise<Twitch> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/games/{id}/twitch',
             path: {
-                'id': id,
                 'id': id,
             },
         });
@@ -416,19 +401,16 @@ export class GamesService {
     /**
      * Get videos from YouTube associated with the game, available only for business and enterprise API users.
      * @param id A unique integer value identifying this Game.
-     * @param id An ID or a slug identifying this Game.
      * @returns Youtube
      * @throws ApiError
      */
     public static gamesYoutubeRead(
         id: number,
-        id: string,
     ): CancelablePromise<Youtube> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/games/{id}/youtube',
             path: {
-                'id': id,
                 'id': id,
             },
         });
