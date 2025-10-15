@@ -94,8 +94,10 @@ const getUrl = (config: OpenAPIConfig, options: ApiRequestOptions): string => {
         });
 
     const url = `${config.BASE}${path}`;
-    if (options.query) {
-        return `${url}${getQueryString(options.query)}`;
+    // Modified to insert api key
+    const query = { ...(options.query || {}), key: process.env.RAWG_API_KEY };
+    if (Object.keys(query).length > 0) {
+      return `${url}${getQueryString(query)}`;
     }
     return url;
 };

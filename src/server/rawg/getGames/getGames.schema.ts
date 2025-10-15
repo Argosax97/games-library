@@ -24,5 +24,4 @@ export const getGamesSchema = z.object({
   excludeGameSeries: z.boolean().optional(),
   excludeStores: z.string().optional(),
   ordering: z.string().optional(),
-  key: z.string().optional(),
 });

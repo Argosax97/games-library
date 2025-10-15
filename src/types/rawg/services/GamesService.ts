@@ -41,7 +41,6 @@ export class GamesService {
      * @param excludeGameSeries Exclude games which included in a game series.
      * @param excludeStores Exclude stores, for example: `5,6`.
      * @param ordering Available fields: `name`, `released`, `added`, `created`, `updated`, `rating`, `metacritic`. You can reverse the sort order adding a hyphen, for example: `-released`.
-     * @param key
      * @returns any
      * @throws ApiError
      */
@@ -69,7 +68,6 @@ export class GamesService {
         excludeGameSeries?: boolean,
         excludeStores?: string,
         ordering?: string,
-        key?: string,
     ): CancelablePromise<{
         count: number;
         next?: string | null;
@@ -103,7 +101,6 @@ export class GamesService {
                 'exclude_game_series': excludeGameSeries,
                 'exclude_stores': excludeStores,
                 'ordering': ordering,
-                'key': key ?? process.env.RAWG_API_KEY
             },
         });
     }
@@ -298,12 +295,12 @@ export class GamesService {
     }
     /**
      * Get details of the game.
-     * @param id A unique integer value identifying this Game.
      * @returns GameSingle
      * @throws ApiError
+     * @param id
      */
     public static gamesRead(
-        id: number,
+        id: string,
     ): CancelablePromise<GameSingle> {
         return __request(OpenAPI, {
             method: 'GET',

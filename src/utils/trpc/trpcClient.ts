@@ -1,6 +1,6 @@
 'use client';
 
-import { httpBatchLink, loggerLink } from '@trpc/client';
+import { getFetch, httpBatchLink, loggerLink } from '@trpc/client';
 
 import { trpcReact } from '@/utils/trpc/trpcReact';
 
@@ -13,6 +13,13 @@ export const trpcClient = trpcReact.createClient({
     }),
     httpBatchLink({
       url: '/api/trpc',
+      fetch: async (input, init?) => {
+        const fetch = getFetch();
+        return fetch(input, {
+          ...init,
+          credentials: 'include',
+        });
+      },
     }),
   ],
 });
